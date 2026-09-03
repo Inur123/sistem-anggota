@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --radius-sm: calc(var(--radius) - 5px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 5px);
+}
+
+:root {
+  --background: oklch(0.985 0.003 155);
+  --foreground: oklch(0.205 0.025 157);
+  --card: oklch(0.999 0.001 155);
+  --card-foreground: oklch(0.205 0.025 157);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.025 157);
+  --primary: oklch(0.43 0.118 159);
+  --primary-foreground: oklch(0.99 0.005 155);
+  --secondary: oklch(0.936 0.032 157);
+  --secondary-foreground: oklch(0.31 0.075 158);
+  --accent: oklch(0.84 0.13 91);
+  --accent-foreground: oklch(0.285 0.052 88);
+  --destructive: oklch(0.57 0.22 26);
+  --muted: oklch(0.955 0.006 155);
+  --muted-foreground: oklch(0.485 0.019 158);
+  --border: oklch(0.865 0.013 157);
+  --input: oklch(0.81 0.018 157);
+  --ring: oklch(0.5 0.118 159);
+  --radius: 1rem;
+  --font-body: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", Manrope, ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-width: 320px;
+    font-variation-settings: "wght" 450;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--accent) 70%, white);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-utility {
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+
+  .member-canvas {
+    background: linear-gradient(180deg, color-mix(in oklch, var(--secondary) 24%, var(--background)) 0, var(--background) 22rem);
+  }
+
+  .soft-surface {
+    box-shadow:
+      0 1px 1px color-mix(in oklch, var(--foreground) 3%, transparent),
+      0 18px 50px -36px color-mix(in oklch, var(--primary) 36%, transparent);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .route-grid {
+    background-image: radial-gradient(color-mix(in oklch, var(--primary) 13%, transparent) 0.75px, transparent 0.75px);
+    background-size: 18px 18px;
+  }
+}
+
+@keyframes route-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes route-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.route-arrive {
+  animation: route-arrive 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.route-draw {
+  animation: route-draw 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
