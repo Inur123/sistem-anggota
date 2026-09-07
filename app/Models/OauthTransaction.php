@@ -9,7 +9,7 @@ class OauthTransaction extends Model
 {
     use HasUuids;
 
-    protected $guarded = [];
+    protected $fillable = ['state_hash', 'nonce_hash', 'code_verifier_encrypted', 'return_to', 'expires_at', 'consumed_at'];
 
     protected $hidden = ['code_verifier_encrypted', 'state_hash', 'nonce_hash'];
 

@@ -9,7 +9,11 @@ class MembershipPeriod extends Model
 {
     use HasUuids;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'member_profile_id', 'laci_member_id', 'laci_period_id', 'period_name',
+        'organization_name', 'wilayah_name', 'verification_status', 'rejection_reason',
+        'is_current', 'submitted_at', 'verified_at',
+    ];
 
     protected function casts(): array
     {

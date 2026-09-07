@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveProfileRequest;
 use App\Services\LaciClient;
 use App\Services\ProfileService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -16,15 +17,7 @@ class ProfileController extends Controller
     {
         $profile = $request->user()->profile()->with('organization')->firstOrFail();
         if ($profile->profile_status === 'DRAFT') {
-            $redirect = redirect('/lengkapi-profil');
-            if ($msg = $request->session()->get('success')) {
-                $redirect->with('success', $msg);
-            }
-            if ($err = $request->session()->get('error')) {
-                $redirect->with('error', $err);
-            }
-
-            return $redirect;
+            return $this->redirectWithFlash($request, '/lengkapi-profil');
         }
 
         return Inertia::render('Profile', ['profile' => $profile->view(), 'periods' => $profile->periods()->latest('submitted_at')->get()]);
@@ -37,15 +30,7 @@ class ProfileController extends Controller
             return redirect('/profile')->with('error', 'Profil sedang menunggu verifikasi.');
         }
         if ($request->is('lengkapi-profil') && $profile->profile_status !== 'DRAFT') {
-            $redirect = redirect('/profile/edit');
-            if ($msg = $request->session()->get('success')) {
-                $redirect->with('success', $msg);
-            }
-            if ($err = $request->session()->get('error')) {
-                $redirect->with('error', $err);
-            }
-
-            return $redirect;
+            return $this->redirectWithFlash($request, '/profile/edit');
         }
         $organizations = null;
         $organizationError = null;
@@ -89,5 +74,18 @@ class ProfileController extends Controller
     public function organizations(LaciClient $laci)
     {
         return response()->json(['success' => true, 'data' => $laci->organizations(true)]);
+    }
+
+    private function redirectWithFlash(Request $request, string $path): RedirectResponse
+    {
+        $redirect = redirect($path);
+        if ($msg = $request->session()->get('success')) {
+            $redirect->with('success', $msg);
+        }
+        if ($err = $request->session()->get('error')) {
+            $redirect->with('error', $err);
+        }
+
+        return $redirect;
     }
 }

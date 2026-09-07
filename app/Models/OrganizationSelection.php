@@ -9,7 +9,7 @@ class OrganizationSelection extends Model
 {
     use HasUuids;
 
-    protected $guarded = [];
+    protected $fillable = ['member_profile_id', 'target_role', 'target_id', 'target_name', 'wilayah_id', 'wilayah_name', 'wilayah_type', 'active'];
 
     protected function casts(): array
     {

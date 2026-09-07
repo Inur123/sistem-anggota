@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, HasUuids;
 
-    protected $guarded = [];
+    protected $fillable = ['sso_subject', 'display_name', 'email', 'avatar_url', 'gender', 'sso_phone_encrypted', 'last_login_at'];
 
     protected $hidden = ['sso_subject', 'sso_phone_encrypted'];
 

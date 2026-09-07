@@ -14,7 +14,13 @@ class MemberProfile extends Model
 
     public const PRIVATE_FIELDS = ['nik', 'nia', 'phone', 'birth_place', 'birth_date', 'address', 'rfid', 'hobby', 'occupation', 'education_history', 'training_history', 'position'];
 
-    protected $guarded = [];
+    protected $fillable = [
+        'user_id', 'full_name', 'gender',
+        'nik_encrypted', 'nia_encrypted', 'phone_encrypted', 'birth_place_encrypted',
+        'birth_date_encrypted', 'address_encrypted', 'rfid_encrypted', 'hobby_encrypted',
+        'occupation_encrypted', 'education_history_encrypted', 'training_history_encrypted',
+        'position_encrypted', 'profile_status', 'profile_version',
+    ];
 
     protected $hidden = ['nik_encrypted', 'nia_encrypted', 'phone_encrypted', 'birth_place_encrypted', 'birth_date_encrypted', 'address_encrypted', 'rfid_encrypted', 'hobby_encrypted', 'occupation_encrypted', 'education_history_encrypted', 'training_history_encrypted', 'position_encrypted'];
 
