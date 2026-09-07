@@ -13,6 +13,8 @@
 .codex/
 .factory/
 .grok/
+.agents/
+.claude/
 *.log
 *.rej
 *.patch
