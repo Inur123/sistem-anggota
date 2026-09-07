@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-emerald-deep: #0e4832;
+  --color-emerald-base: #146949;
+  --color-emerald-vibrant: #1b875f;
+  --color-emerald-light: #eaf5f0;
+  --color-gold-deep: #b5801c;
+  --color-gold-base: #d99a26;
+  --color-gold-light: #fef8eb;
+  --color-canvas: #ffffff;
+  --color-surface: #ffffff;
+  --color-text-main: #11281e;
+  --color-text-muted: #566e63;
+  --color-border-subtle: #dde7e2;
+  --color-border-hover: #b8cec4;
+
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-border-subtle, currentColor);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
