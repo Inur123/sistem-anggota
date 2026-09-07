@@ -60,6 +60,7 @@ return new class extends Migration
             $table->unsignedInteger('attempt_count')->default(0);
             $table->timestamp('next_retry_at')->nullable();
             $table->timestamps();
+            $table->index(['member_profile_id', 'profile_version', 'result_status'], 'sync_attempts_profile_version_status_index');
         });
         Schema::create('oauth_transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
@@ -85,6 +86,7 @@ return new class extends Migration
             $table->string('entity_id')->nullable();
             $table->json('metadata')->nullable();
             $table->timestamp('created_at')->useCurrent();
+            $table->index(['user_id', 'action', 'created_at'], 'audit_logs_user_action_created_index');
         });
     }
 
