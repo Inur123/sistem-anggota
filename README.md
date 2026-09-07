@@ -1,4 +1,22 @@
-# Sistem Anggota IPNU IPPNU
+<p align="center">
+  <img src="public/images/logo-sistem-anggota.png" width="200" alt="Sistem Anggota">
+</p>
+
+<h1 align="center">Sistem Anggota IPNU IPPNU</h1>
+
+<p align="center">
+  Portal mandiri (self-service) terpusat bagi anggota IPNU dan IPPNU Pelajar NU Magetan.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Inertia.js-v3-6C63FF?logo=inertia&logoColor=white" alt="Inertia.js">
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/PHP-8.3-777BB4?logo=php&logoColor=white" alt="PHP">
+</p>
+
+---
 
 Sistem Anggota adalah portal mandiri (self-service) terpusat bagi anggota IPNU dan IPPNU. Melalui portal ini, anggota dapat:
 
