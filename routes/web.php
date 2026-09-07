@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', fn () => Inertia::render('Welcome'))->name('home');
+Route::get('/kebijakan-privasi', fn () => Inertia::render('PrivacyPolicy'))->name('privacy');
 Route::get('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1')->name('login');
 Route::get('/api/v1/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1');
 Route::get('/api/auth/oauth2/callback/sistem-anggota', [AuthController::class, 'callback'])->middleware('throttle:20,1');

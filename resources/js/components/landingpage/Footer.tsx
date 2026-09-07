@@ -66,9 +66,17 @@ export function Footer({
                     <span>
                         © {new Date().getFullYear()} PC IPNU IPPNU Kabupaten Magetan. Seluruh hak cipta dilindungi.
                     </span>
-                    <span className="text-[0.7rem] font-medium text-slate-400">
-                        Sistem Anggota Terpadu · Pelajar NU Magetan
-                    </span>
+                    <div className="flex items-center gap-4">
+                        <a
+                            href="/kebijakan-privasi"
+                            className="hover:text-[#146949] transition-colors font-medium"
+                        >
+                            Kebijakan Privasi
+                        </a>
+                        <span className="text-[0.7rem] font-medium text-slate-400">
+                            Sistem Anggota Terpadu · Pelajar NU Magetan
+                        </span>
+                    </div>
                 </div>
             </div>
         </footer>
