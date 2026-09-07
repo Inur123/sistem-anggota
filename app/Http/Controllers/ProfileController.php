@@ -65,9 +65,6 @@ class ProfileController extends Controller
 
         return Inertia::render('History', [
             'periods' => $profile->periods()->latest('submitted_at')->get(),
-            'history' => DB::table('audit_logs')->where('user_id', $request->user()->id)
-                ->whereIn('action', ['profile.updated', 'profile.submitted', 'member.status_changed'])
-                ->latest('created_at')->limit(50)->get(['id', 'action', 'metadata', 'created_at']),
         ]);
     }
 

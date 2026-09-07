@@ -78,21 +78,11 @@ return new class extends Migration
             $table->string('event_type');
             $table->timestamp('received_at');
         });
-        Schema::create('audit_logs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignUuid('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('action');
-            $table->string('entity_type');
-            $table->string('entity_id')->nullable();
-            $table->json('metadata')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->index(['user_id', 'action', 'created_at'], 'audit_logs_user_action_created_index');
-        });
     }
 
     public function down(): void
     {
-        foreach (['audit_logs', 'webhook_events', 'oauth_transactions', 'sync_attempts', 'membership_periods', 'organization_selections', 'member_profiles'] as $table) {
+        foreach (['webhook_events', 'oauth_transactions', 'sync_attempts', 'membership_periods', 'organization_selections', 'member_profiles'] as $table) {
             Schema::dropIfExists($table);
         }
     }

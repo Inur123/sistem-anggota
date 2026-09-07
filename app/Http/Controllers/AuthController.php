@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\OauthTransaction;
 use App\Models\User;
 use App\Services\SsoClient;
-use App\Support\Audit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,7 +104,6 @@ class AuthController extends Controller
                 ]);
                 $profile = $user->profile()->firstOrCreate([], ['full_name' => $user->display_name, 'gender' => $user->gender, 'phone_encrypted' => $user->sso_phone_encrypted]);
                 $profile->update(['full_name' => $user->display_name, 'gender' => $user->gender, 'phone_encrypted' => $user->sso_phone_encrypted]);
-                Audit::record($user->id, 'auth.login', $user->id);
 
                 return $user;
             });
@@ -134,7 +132,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Audit::record($request->user()?->id, 'auth.logout', $request->user()?->id);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

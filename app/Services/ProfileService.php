@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\MemberProfile;
 use App\Models\User;
-use App\Support\Audit;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -60,7 +59,6 @@ class ProfileService
                     'profile_version' => $profile->profile_version + 1,
                     'profile_status' => $profile->profile_status === 'DITOLAK' ? 'DRAFT' : $profile->profile_status,
                 ])->save();
-                Audit::record($user->id, 'profile.updated', $profile->id);
 
                 return $profile->fresh();
             });
@@ -121,7 +119,6 @@ class ProfileService
                 unset($selection['period']);
                 $organization->update($selection);
                 DB::table('sync_attempts')->where('id', $attemptId)->update(['result_status' => 'SUCCESS', 'http_status' => $result['http_status'], 'updated_at' => now()]);
-                Audit::record($user->id, 'profile.submitted', $profile->id);
 
                 return null;
             });

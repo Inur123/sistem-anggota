@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\MemberProfile;
 use App\Models\MembershipPeriod;
-use App\Support\Audit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -62,7 +61,6 @@ class LaciWebhookController extends Controller
             if ($period->is_current) {
                 $profile->update(['profile_status' => $status]);
             }
-            Audit::record($profile->user_id, 'member.status_changed', $profile->id, ['eventId' => $data['eventId'], 'status' => $status]);
 
             return false;
         });

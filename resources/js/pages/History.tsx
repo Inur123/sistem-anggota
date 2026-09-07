@@ -7,26 +7,7 @@ import { Card } from "../components/ui/card";
 import { StatusBadge } from "../components/ui";
 import { dateLabel, type Period } from "../types";
 
-type AuditEvent = {
-    id: number;
-    action: string;
-    created_at: string;
-    metadata: string | { status?: string };
-};
-
-export default function History({
-    periods,
-    history,
-}: {
-    periods: Period[];
-    history: AuditEvent[];
-}) {
-    const labels: Record<string, string> = {
-        "profile.updated": "Profil disimpan",
-        "profile.submitted": "Pengajuan dikirim ke pengurus",
-        "member.status_changed": "Status verifikasi diperbarui",
-    };
-
+export default function History({ periods }: { periods: Period[] }) {
     return (
         <MemberLayout
             title="Perjalanan keanggotaan."
@@ -34,8 +15,7 @@ export default function History({
         >
             <Head title="Riwayat keanggotaan" />
 
-            {/* Period History Section */}
-            <Card className="bg-white border-[#dde7e2] p-6 rounded-2xl shadow-xs mb-6">
+            <Card className="bg-white border-[#dde7e2] p-6 rounded-2xl shadow-xs">
                 <div className="flex items-center justify-between pb-5 border-b border-[#dde7e2] mb-6">
                     <div>
                         <h2 className="text-lg font-bold text-[#11281e]">Riwayat periode</h2>
@@ -116,37 +96,6 @@ export default function History({
                             </Button>
                         </Link>
                     </div>
-                )}
-            </Card>
-
-            {/* Profile Activity Section */}
-            <Card className="bg-white border-[#dde7e2] p-6 rounded-2xl shadow-xs">
-                <div className="pb-5 border-b border-[#dde7e2] mb-5">
-                    <h2 className="text-lg font-bold text-[#11281e]">Aktivitas profil</h2>
-                    <p className="text-xs text-[#566e63] mt-0.5">Menampilkan hingga 50 aktivitas terbaru.</p>
-                </div>
-
-                {history.length ? (
-                    <ol className="flex flex-col gap-3">
-                        {history.map((event) => (
-                            <li
-                                key={event.id}
-                                className="flex items-center gap-3 p-3 rounded-xl bg-white border border-[#dde7e2]"
-                            >
-                                <span className="size-2 rounded-full bg-[#146949] shrink-0" />
-                                <div className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                    <strong className="text-xs font-semibold text-[#11281e]">
-                                        {labels[event.action] ?? "Profil diperbarui"}
-                                    </strong>
-                                    <time className="text-[0.68rem] text-[#566e63]">
-                                        {dateLabel(event.created_at)}
-                                    </time>
-                                </div>
-                            </li>
-                        ))}
-                    </ol>
-                ) : (
-                    <p className="text-xs text-[#566e63] italic">Belum ada aktivitas profil.</p>
                 )}
             </Card>
         </MemberLayout>
